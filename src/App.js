@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
   const [origin, setOrigin] = useState(1);
@@ -9,6 +9,7 @@ function App() {
   const [enhancementThree, setEnhancementThree] = useState(0);
   const [enhancementFour, setEnhancementFour] = useState(0);
   const [fragment, setFragment] = useState(0);
+  const [dailyIncome, setDailyIncome] = useState(12);
 
   const getOriginCost = (level) => {
     const costs = [
@@ -34,10 +35,16 @@ function App() {
     return costs.slice(0, level).reduce((a, b) => a + b, 0);
   };
 
+  useEffect(() => {
+    document.title = "Hoop's Erda Fragments Calculator";
+  }, []);
+
   return (
     <div className='App'>
       <header className='App-header'>
         <div className='vertical'>
+          <h1>Erda Fragments Calculator</h1>
+          <p>Input your current HEXA Skill level</p>
           <div className='horizontal'>
             <span>Origin Core Level </span>
             <input
@@ -80,7 +87,19 @@ function App() {
               type='number'
               onChange={(e) => setEnhancementFour(e.target.value)}></input>
           </div>
+          <div className='horizontal'>
+            <span>Daily Fragment Income (Not Including Daily) </span>
+            <input
+              id='daily-income'
+              type='number'
+              onChange={(e) => setDailyIncome(e.target.value)}></input>
+          </div>
           <button
+            style={{
+              background: "#ffa31a",
+              color: "#ffffff",
+              fontSize: "24px",
+            }}
             onClick={(e) => {
               const result =
                 getOriginCost(origin) +
@@ -96,7 +115,11 @@ function App() {
         </div>
         <span id='results' style={{ padding: "10px" }}>
           You've spent {fragment} fragments already. You need {20184 - fragment}{" "}
-          more fragments to max 6th job.
+          more fragments.
+        </span>
+        <span id='results' style={{ padding: "10px" }}>
+          With you current fragment income, it will take you{" "}
+          {(20184 - fragment) / dailyIncome} days to max HEXA skill.
         </span>
       </header>
     </div>
