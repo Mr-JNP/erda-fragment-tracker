@@ -44,6 +44,7 @@ function App() {
       <header className='App-header'>
         <div className='vertical'>
           <h1>Erda Fragments Calculator</h1>
+          <img className='center' src='7308956572081502428.png' />
           <p>Input your current HEXA Skill level</p>
           <div className='horizontal'>
             <span>Origin Core Level </span>
@@ -118,7 +119,7 @@ function App() {
           more fragments.
         </span>
         <span id='results' style={{ padding: "10px" }}>
-          With you current fragment income, it will take you{" "}
+          With your current fragment income, it will take you{" "}
           {(20184 - fragment) / dailyIncome} days to max HEXA skill.
         </span>
       </header>
