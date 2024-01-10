@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/erda-fragment-tracker/static/css/main.3846c14c.css",
-    "main.js": "/erda-fragment-tracker/static/js/main.1d6460c1.js",
+    "main.css": "/erda-fragment-tracker/static/css/main.71fe95a7.css",
+    "main.js": "/erda-fragment-tracker/static/js/main.b3a0bd55.js",
     "static/js/787.0a6ac199.chunk.js": "/erda-fragment-tracker/static/js/787.0a6ac199.chunk.js",
     "index.html": "/erda-fragment-tracker/index.html",
-    "main.3846c14c.css.map": "/erda-fragment-tracker/static/css/main.3846c14c.css.map",
-    "main.1d6460c1.js.map": "/erda-fragment-tracker/static/js/main.1d6460c1.js.map",
+    "main.71fe95a7.css.map": "/erda-fragment-tracker/static/css/main.71fe95a7.css.map",
+    "main.b3a0bd55.js.map": "/erda-fragment-tracker/static/js/main.b3a0bd55.js.map",
     "787.0a6ac199.chunk.js.map": "/erda-fragment-tracker/static/js/787.0a6ac199.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3846c14c.css",
-    "static/js/main.1d6460c1.js"
+    "static/css/main.71fe95a7.css",
+    "static/js/main.b3a0bd55.js"
   ]
 }
