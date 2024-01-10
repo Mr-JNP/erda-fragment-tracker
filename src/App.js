@@ -2,7 +2,7 @@ import "./App.css";
 import { useRef, useState } from "react";
 
 function App() {
-  const [origin, setOrigin] = useState(0);
+  const [origin, setOrigin] = useState(1);
   const [mastery, setMastery] = useState(0);
   const [enhancementOne, setEnhancementOne] = useState(0);
   const [enhancementTwo, setEnhancementTwo] = useState(0);
@@ -37,64 +37,67 @@ function App() {
   return (
     <div className='App'>
       <header className='App-header'>
-        <div>
-          <div>
+        <div className='vertical'>
+          <div className='horizontal'>
             <span>Origin Core Level </span>
             <input
               id='origin-level'
               type='number'
               onChange={(e) => setOrigin(e.target.value)}></input>
           </div>
-          <div>
+          <div className='horizontal'>
             <span>Mastery Core Level </span>
             <input
               id='mastery-level'
               type='number'
               onChange={(e) => setMastery(e.target.value)}></input>
           </div>
-          <div>
+          <div className='horizontal'>
             <span>Enhancement Core #1 Level </span>
             <input
               id='enhancement-one-level'
               type='number'
               onChange={(e) => setEnhancementOne(e.target.value)}></input>
           </div>
-          <div>
+          <div className='horizontal'>
             <span>Enhancement Core #2 Level </span>
             <input
               id='enhancement-two-level'
               type='number'
               onChange={(e) => setEnhancementTwo(e.target.value)}></input>
           </div>
-          <div>
+          <div className='horizontal'>
             <span>Enhancement Core #3 Level </span>
             <input
               id='enhancement-three-level'
               type='number'
               onChange={(e) => setEnhancementThree(e.target.value)}></input>
           </div>
-          <div>
+          <div className='horizontal'>
             <span>Enhancement Core #4 Level </span>
             <input
               id='enhancement-four-level'
               type='number'
               onChange={(e) => setEnhancementFour(e.target.value)}></input>
           </div>
+          <button
+            onClick={(e) => {
+              const result =
+                getOriginCost(origin) +
+                getMasteryCost(mastery) +
+                getEnhancementCost(enhancementOne) +
+                getEnhancementCost(enhancementTwo) +
+                getEnhancementCost(enhancementThree) +
+                getEnhancementCost(enhancementFour);
+              setFragment(result);
+            }}>
+            Calculate
+          </button>
         </div>
-        <button
-          onClick={(e) => {
-            const result =
-              getOriginCost(origin) +
-              getMasteryCost(mastery) +
-              getEnhancementCost(enhancementOne) +
-              getEnhancementCost(enhancementTwo) +
-              getEnhancementCost(enhancementThree) +
-              getEnhancementCost(enhancementFour);
-            setFragment(result);
-          }}>
-          Calculate
-        </button>
-        <span id='results'>Result: {fragment}</span>
+        <span id='results' style={{ padding: "10px" }}>
+          You've spent {fragment} fragments already. You need {20184 - fragment}{" "}
+          more fragments to max 6th job.
+        </span>
       </header>
     </div>
   );
