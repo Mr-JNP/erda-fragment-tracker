@@ -53,5 +53,24 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 10%;
+}
+
+section {
+  display: table;
+  width: 100%;
+}
+
+section > * {
+  display: table-row;
+}
+
+section .col {
+  display: table-cell;
+}
+
+input {
+  background-color: #282c34;
+  color: white;
+  text-align: center;
 }
