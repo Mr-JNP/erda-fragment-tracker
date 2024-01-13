@@ -79,18 +79,24 @@ function App() {
             <div className='col'>Origin</div>
             <div className='col'>
               <input
+                tabIndex={1}
                 id='origin-level'
                 className='col'
                 type='number'
                 value={origin}
+                min={1}
+                max={30}
                 onChange={(e) => setOrigin(e.target.value)}></input>
             </div>
             <div className='col'>
               <input
+                tabIndex={2}
                 id='desired-origin-level'
                 className='col'
                 type='number'
                 value={desiredOrigin}
+                min={1}
+                max={30}
                 onChange={(e) => setDesiredOrigin(e.target.value)}></input>
             </div>
             <div className='col'>{getOriginCost(origin)}</div>
@@ -103,16 +109,22 @@ function App() {
             <div className='col'>Mastery</div>
             <div className='col'>
               <input
+                tabIndex={1}
                 id='mastery-level'
                 type='number'
                 value={mastery}
+                min={0}
+                max={30}
                 onChange={(e) => setMastery(e.target.value)}></input>
             </div>
             <div className='col'>
               <input
+                tabIndex={2}
                 id='desired-mastery-level'
                 type='number'
                 value={desiredMastery}
+                min={0}
+                max={30}
                 onChange={(e) => setDesiredMastery(e.target.value)}></input>
             </div>
             <div className='col'>{getMasteryCost(mastery)}</div>
@@ -125,16 +137,22 @@ function App() {
             <div className='col'>Boost A</div>
             <div className='col'>
               <input
+                tabIndex={1}
                 id='enhancement-one-level'
                 type='number'
                 value={enhancementOne}
+                min={0}
+                max={30}
                 onChange={(e) => setEnhancementOne(e.target.value)}></input>
             </div>
             <div className='col'>
               <input
+                tabIndex={2}
                 id='desired-enhancement-one-level'
                 type='number'
                 value={desiredBoostOne}
+                min={0}
+                max={30}
                 onChange={(e) => setDesiredBoostOne(e.target.value)}></input>
             </div>
             <div className='col'>{getEnhancementCost(enhancementOne)}</div>
@@ -148,16 +166,22 @@ function App() {
             <div className='col'>Boost B</div>
             <div className='col'>
               <input
+                tabIndex={1}
                 id='enhancement-two-level'
                 type='number'
                 value={enhancementTwo}
+                min={0}
+                max={30}
                 onChange={(e) => setEnhancementTwo(e.target.value)}></input>
             </div>
             <div className='col'>
               <input
+                tabIndex={2}
                 id='desired-enhancement-two-level'
                 type='number'
                 value={desiredBoostTwo}
+                min={0}
+                max={30}
                 onChange={(e) => setDesiredBoostTwo(e.target.value)}></input>
             </div>
             <div className='col'>{getEnhancementCost(enhancementTwo)}</div>
@@ -171,16 +195,22 @@ function App() {
             <div className='col'>Boost C</div>
             <div className='col'>
               <input
+                tabIndex={1}
                 id='enhancement-three-level'
                 type='number'
                 value={enhancementThree}
+                min={0}
+                max={30}
                 onChange={(e) => setEnhancementThree(e.target.value)}></input>
             </div>
             <div className='col'>
               <input
+                tabIndex={2}
                 id='desired-enhancement-three-level'
                 type='number'
                 value={desiredBoostTwo}
+                min={0}
+                max={30}
                 onChange={(e) => setDesiredBoostThree(e.target.value)}></input>
             </div>
             <div className='col'>{getEnhancementCost(enhancementThree)}</div>
@@ -194,16 +224,22 @@ function App() {
             <div className='col'>Boost D</div>
             <div className='col'>
               <input
+                tabIndex={1}
                 id='enhancement-four-level'
                 type='number'
                 value={enhancementFour}
+                min={0}
+                max={30}
                 onChange={(e) => setEnhancementFour(e.target.value)}></input>
             </div>
             <div className='col'>
               <input
+                tabIndex={2}
                 id='desired-enhancement-four-level'
                 type='number'
                 value={desiredBoostFour}
+                min={0}
+                max={30}
                 onChange={(e) => setDesiredBoostFour(e.target.value)}></input>
             </div>
             <div className='col'>{getEnhancementCost(enhancementFour)}</div>
@@ -270,6 +306,7 @@ function App() {
             </div>
             <div className='col'>
               <input
+                tabIndex={3}
                 id='frags-per-hour'
                 type='number'
                 value={income}
