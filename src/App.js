@@ -3,11 +3,17 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [origin, setOrigin] = useState(1);
+  const [desiredOrigin, setDesiredOrigin] = useState(30);
   const [mastery, setMastery] = useState(0);
+  const [desiredMastery, setDesiredMastery] = useState(30);
   const [enhancementOne, setEnhancementOne] = useState(0);
+  const [desiredBoostOne, setDesiredBoostOne] = useState(30);
   const [enhancementTwo, setEnhancementTwo] = useState(0);
+  const [desiredBoostTwo, setDesiredBoostTwo] = useState(30);
   const [enhancementThree, setEnhancementThree] = useState(0);
+  const [desiredBoostThree, setDesiredBoostThree] = useState(30);
   const [enhancementFour, setEnhancementFour] = useState(0);
+  const [desiredBoostFour, setDesiredBoostFour] = useState(30);
   const [income, setIncome] = useState(12);
 
   const getOriginCost = (level) => {
@@ -64,121 +70,210 @@ function App() {
           <header>
             <div className='col'>Skill</div>
             <div className='col'>Current Level</div>
+            <div className='col'>Desired Level</div>
             <div className='col'>Fragments Spent</div>
             <div className='col'>Fragments Left</div>
             <div className='col'>Total</div>
           </header>
           <div className='row'>
             <div className='col'>Origin</div>
-            <input
-              id='origin-level'
-              type='number'
-              value={origin}
-              onChange={(e) => setOrigin(e.target.value)}></input>
+            <div className='col'>
+              <input
+                id='origin-level'
+                className='col'
+                type='number'
+                value={origin}
+                onChange={(e) => setOrigin(e.target.value)}></input>
+            </div>
+            <div className='col'>
+              <input
+                id='desired-origin-level'
+                className='col'
+                type='number'
+                value={desiredOrigin}
+                onChange={(e) => setDesiredOrigin(e.target.value)}></input>
+            </div>
             <div className='col'>{getOriginCost(origin)}</div>
-            <div className='col'>{TOTAL_ORIGIN - getOriginCost(origin)}</div>
-            <div className='col'>{TOTAL_ORIGIN}</div>
+            <div className='col'>
+              {getOriginCost(desiredOrigin) - getOriginCost(origin)}
+            </div>
+            <div className='col'>{getOriginCost(desiredOrigin)}</div>
           </div>
           <div className='row'>
             <div className='col'>Mastery</div>
-            <input
-              id='mastery-level'
-              type='number'
-              value={mastery}
-              onChange={(e) => setMastery(e.target.value)}></input>
+            <div className='col'>
+              <input
+                id='mastery-level'
+                type='number'
+                value={mastery}
+                onChange={(e) => setMastery(e.target.value)}></input>
+            </div>
+            <div className='col'>
+              <input
+                id='desired-mastery-level'
+                type='number'
+                value={desiredMastery}
+                onChange={(e) => setDesiredMastery(e.target.value)}></input>
+            </div>
             <div className='col'>{getMasteryCost(mastery)}</div>
-            <div className='col'>{TOTAL_MASTERY - getMasteryCost(mastery)}</div>
-            <div className='col'>{TOTAL_MASTERY}</div>
+            <div className='col'>
+              {getMasteryCost(desiredMastery) - getMasteryCost(mastery)}
+            </div>
+            <div className='col'>{getMasteryCost(desiredMastery)}</div>
           </div>
           <div className='row'>
-            <div className='col'>Enhancement#1</div>
-            <input
-              id='enhancement-one-level'
-              type='number'
-              value={enhancementOne}
-              onChange={(e) => setEnhancementOne(e.target.value)}></input>
+            <div className='col'>Boost A</div>
+            <div className='col'>
+              <input
+                id='enhancement-one-level'
+                type='number'
+                value={enhancementOne}
+                onChange={(e) => setEnhancementOne(e.target.value)}></input>
+            </div>
+            <div className='col'>
+              <input
+                id='desired-enhancement-one-level'
+                type='number'
+                value={desiredBoostOne}
+                onChange={(e) => setDesiredBoostOne(e.target.value)}></input>
+            </div>
             <div className='col'>{getEnhancementCost(enhancementOne)}</div>
             <div className='col'>
-              {TOTAL_ENHANCEMENT - getEnhancementCost(enhancementOne)}
+              {getEnhancementCost(desiredBoostOne) -
+                getEnhancementCost(enhancementOne)}
             </div>
-            <div className='col'>{TOTAL_ENHANCEMENT}</div>
+            <div className='col'>{getEnhancementCost(desiredBoostOne)}</div>
           </div>
           <div className='row'>
-            <div className='col'>Enhancement#2</div>
-            <input
-              id='enhancement-two-level'
-              type='number'
-              value={enhancementTwo}
-              onChange={(e) => setEnhancementTwo(e.target.value)}></input>
+            <div className='col'>Boost B</div>
+            <div className='col'>
+              <input
+                id='enhancement-two-level'
+                type='number'
+                value={enhancementTwo}
+                onChange={(e) => setEnhancementTwo(e.target.value)}></input>
+            </div>
+            <div className='col'>
+              <input
+                id='desired-enhancement-two-level'
+                type='number'
+                value={desiredBoostTwo}
+                onChange={(e) => setDesiredBoostTwo(e.target.value)}></input>
+            </div>
             <div className='col'>{getEnhancementCost(enhancementTwo)}</div>
             <div className='col'>
-              {TOTAL_ENHANCEMENT - getEnhancementCost(enhancementTwo)}
+              {getEnhancementCost(desiredBoostTwo) -
+                getEnhancementCost(enhancementTwo)}
             </div>
-            <div className='col'>{TOTAL_ENHANCEMENT}</div>
+            <div className='col'>{getEnhancementCost(desiredBoostTwo)}</div>
           </div>
           <div className='row'>
-            <div className='col'>Enhancement#3</div>
-            <input
-              id='enhancement-three-level'
-              type='number'
-              value={enhancementThree}
-              onChange={(e) => setEnhancementThree(e.target.value)}></input>
+            <div className='col'>Boost C</div>
+            <div className='col'>
+              <input
+                id='enhancement-three-level'
+                type='number'
+                value={enhancementThree}
+                onChange={(e) => setEnhancementThree(e.target.value)}></input>
+            </div>
+            <div className='col'>
+              <input
+                id='desired-enhancement-three-level'
+                type='number'
+                value={desiredBoostTwo}
+                onChange={(e) => setDesiredBoostThree(e.target.value)}></input>
+            </div>
             <div className='col'>{getEnhancementCost(enhancementThree)}</div>
             <div className='col'>
-              {TOTAL_ENHANCEMENT - getEnhancementCost(enhancementThree)}
+              {getEnhancementCost(desiredBoostThree) -
+                getEnhancementCost(enhancementThree)}
             </div>
-            <div className='col'>{TOTAL_ENHANCEMENT}</div>
+            <div className='col'>{getEnhancementCost(desiredBoostThree)}</div>
           </div>
           <div className='row'>
-            <div className='col'>Enhancement#4</div>
-            <input
-              id='enhancement-four-level'
-              type='number'
-              value={enhancementFour}
-              onChange={(e) => setEnhancementFour(e.target.value)}></input>
+            <div className='col'>Boost D</div>
+            <div className='col'>
+              <input
+                id='enhancement-four-level'
+                type='number'
+                value={enhancementFour}
+                onChange={(e) => setEnhancementFour(e.target.value)}></input>
+            </div>
+            <div className='col'>
+              <input
+                id='desired-enhancement-four-level'
+                type='number'
+                value={desiredBoostFour}
+                onChange={(e) => setDesiredBoostFour(e.target.value)}></input>
+            </div>
             <div className='col'>{getEnhancementCost(enhancementFour)}</div>
             <div className='col'>
-              {TOTAL_ENHANCEMENT - getEnhancementCost(enhancementFour)}
+              {getEnhancementCost(desiredBoostFour) -
+                getEnhancementCost(enhancementFour)}
             </div>
-            <div className='col'>{TOTAL_ENHANCEMENT}</div>
+            <div className='col'>{getEnhancementCost(desiredBoostFour)}</div>
           </div>
           <div className='row'>
-            <div className='col'>Total</div>
             <div className='col'></div>
+            <div className='col'></div>
+            <div className='col'>Total</div>
             <div className='col'>{getFragmentSpent()}</div>
             <div className='col'>{TOTAL_FRAGS - getFragmentSpent()}</div>
             <div className='col'>{TOTAL_FRAGS}</div>
           </div>
+          <div className='row'>&nbsp;</div>
           <div className='row'>
-            <div className='col'>Completion</div>
-            <div className='col'>
-              {parseFloat((getFragmentSpent() / TOTAL_FRAGS) * 100).toFixed(2)}%
-            </div>
-            <div className='col'></div>
-            <div className='col'></div>
-            <div className='col'></div>
-          </div>
-          <div className='row'>
-            <div className='col'></div>
-            <div className='col'></div>
+            <div className='col'>Completion (Desired Level)</div>
+            <div className='col'>Completion (Max Level)</div>
+            <div className='col'>ETA to Desired Level (hr)</div>
+            <div className='col'>ETA to Max Level (hr)</div>
             <div className='col'>Frags/hr</div>
-            <div className='col'>Time Left (hr)</div>
             <div className='col'>Total Time</div>
           </div>
           <div className='row'>
-            <div className='col'></div>
-            <div className='col'></div>
-            <input
-              id='frags-per-hour'
-              type='number'
-              value={income}
-              onChange={(e) => setIncome(e.target.value)}></input>
+            <div className='col'>
+              {parseFloat(
+                (getFragmentSpent() /
+                  (getOriginCost(desiredOrigin) +
+                    getMasteryCost(desiredMastery) +
+                    getEnhancementCost(desiredBoostOne) +
+                    getEnhancementCost(desiredBoostTwo) +
+                    getEnhancementCost(desiredBoostThree) +
+                    getEnhancementCost(desiredBoostFour))) *
+                  100
+              ).toFixed(2)}
+              %
+            </div>
+            <div className='col'>
+              {parseFloat((getFragmentSpent() / TOTAL_FRAGS) * 100).toFixed(2)}%
+            </div>
+            <div className='col'>
+              {income <= 0
+                ? "N/A"
+                : parseFloat(
+                    (getOriginCost(desiredOrigin) +
+                      getMasteryCost(desiredMastery) +
+                      getEnhancementCost(desiredBoostOne) +
+                      getEnhancementCost(desiredBoostTwo) +
+                      getEnhancementCost(desiredBoostThree) +
+                      getEnhancementCost(desiredBoostFour) -
+                      getFragmentSpent()) /
+                      income
+                  ).toFixed(1)}
+            </div>
             <div className='col'>
               {income <= 0
                 ? "N/A"
                 : parseFloat(
                     (TOTAL_FRAGS - getFragmentSpent()) / income
                   ).toFixed(1)}
+            </div>
+            <div className='col'>
+              <input
+                id='frags-per-hour'
+                type='number'
+                value={income}
+                onChange={(e) => setIncome(e.target.value)}></input>
             </div>
             <div className='col'>
               {income <= 0
