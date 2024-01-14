@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/erda-fragment-tracker/static/css/main.89da609a.css",
-    "main.js": "/erda-fragment-tracker/static/js/main.8f806335.js",
+    "main.js": "/erda-fragment-tracker/static/js/main.a4a737fe.js",
     "static/js/787.0a6ac199.chunk.js": "/erda-fragment-tracker/static/js/787.0a6ac199.chunk.js",
     "index.html": "/erda-fragment-tracker/index.html",
     "main.89da609a.css.map": "/erda-fragment-tracker/static/css/main.89da609a.css.map",
-    "main.8f806335.js.map": "/erda-fragment-tracker/static/js/main.8f806335.js.map",
+    "main.a4a737fe.js.map": "/erda-fragment-tracker/static/js/main.a4a737fe.js.map",
     "787.0a6ac199.chunk.js.map": "/erda-fragment-tracker/static/js/787.0a6ac199.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.89da609a.css",
-    "static/js/main.8f806335.js"
+    "static/js/main.a4a737fe.js"
   ]
 }
