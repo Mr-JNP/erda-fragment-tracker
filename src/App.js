@@ -64,7 +64,11 @@ function App() {
     <div className='App'>
       <header className='App-header'>
         <h1>Erda Fragments Calculator</h1>
-        <img className='center' src='7308956572081502428.png' />
+        <img
+          className='center'
+          src='7308956572081502428.png'
+          alt='Cat licking erda fragment'
+        />
         <p>Input your current HEXA Skill level</p>
         <section>
           <header>
