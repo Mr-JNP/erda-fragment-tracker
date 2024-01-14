@@ -212,7 +212,7 @@ function App() {
                 tabIndex={2}
                 id='desired-enhancement-three-level'
                 type='number'
-                value={desiredBoostTwo}
+                value={desiredBoostThree}
                 min={0}
                 max={30}
                 onChange={(e) => setDesiredBoostThree(e.target.value)}></input>
