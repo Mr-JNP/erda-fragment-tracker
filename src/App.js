@@ -258,7 +258,15 @@ function App() {
             <div className='col'></div>
             <div className='col'>Total</div>
             <div className='col'>{getFragmentSpent()}</div>
-            <div className='col'>{TOTAL_FRAGS - getFragmentSpent()}</div>
+            <div className='col'>
+              {getOriginCost(desiredOrigin) +
+                getMasteryCost(desiredMastery) +
+                getEnhancementCost(desiredBoostOne) +
+                getEnhancementCost(desiredBoostTwo) +
+                getEnhancementCost(desiredBoostThree) +
+                getEnhancementCost(desiredBoostFour) -
+                getFragmentSpent()}
+            </div>
             <div className='col'>{TOTAL_FRAGS}</div>
           </div>
           <div className='row'>&nbsp;</div>
