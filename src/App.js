@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 function App() {
   const [origin, setOrigin] = useState(1);
   const [desiredOrigin, setDesiredOrigin] = useState(30);
-  const [mastery, setMastery] = useState(0);
-  const [desiredMastery, setDesiredMastery] = useState(30);
+  const [masteryOne, setMasteryOne] = useState(0);
+  const [desiredMasteryOne, setDesiredMasteryOne] = useState(30);
+  const [masteryTwo, setMasteryTwo] = useState(0);
+  const [desiredMasteryTwo, setDesiredMasteryTwo] = useState(30);
   const [enhancementOne, setEnhancementOne] = useState(0);
   const [desiredBoostOne, setDesiredBoostOne] = useState(30);
   const [enhancementTwo, setEnhancementTwo] = useState(0);
@@ -14,6 +16,8 @@ function App() {
   const [desiredBoostThree, setDesiredBoostThree] = useState(30);
   const [enhancementFour, setEnhancementFour] = useState(0);
   const [desiredBoostFour, setDesiredBoostFour] = useState(30);
+  const [solJanus, setSolJanus] = useState(0);
+  const [desiredSolJanus, setDesiredSolJanus] = useState(30);
   const [income, setIncome] = useState(12);
 
   const getOriginCost = (level) => {
@@ -40,21 +44,32 @@ function App() {
     return costs.slice(0, level).reduce((a, b) => a + b, 0);
   };
 
+  const getSolJanusCost = (level) => {
+    const costs = [
+      125, 38, 44, 50, 57, 63, 69, 75, 82, 300, 110, 124, 138, 152, 165, 179,
+      193, 207, 220, 525, 234, 248, 262, 275, 289, 303, 317, 330, 344, 750
+    ];
+    return costs.slice(0, level).reduce((a, b) => a + b, 0);
+  };
+
   const getFragmentSpent = () => {
     return (
       getOriginCost(origin) +
-      getMasteryCost(mastery) +
+      getMasteryCost(masteryOne) +
+      getMasteryCost(masteryTwo) +
       getEnhancementCost(enhancementOne) +
       getEnhancementCost(enhancementTwo) +
       getEnhancementCost(enhancementThree) +
-      getEnhancementCost(enhancementFour)
+      getEnhancementCost(enhancementFour) +
+      getSolJanusCost(solJanus)
     );
   };
 
   const TOTAL_ORIGIN = getOriginCost(30);
   const TOTAL_MASTERY = getMasteryCost(30);
   const TOTAL_ENHANCEMENT = getEnhancementCost(30);
-  const TOTAL_FRAGS = TOTAL_ORIGIN + TOTAL_MASTERY + 4 * TOTAL_ENHANCEMENT;
+  const TOTAL_SOL_JANUS = getSolJanusCost(30);
+  const TOTAL_FRAGS = TOTAL_ORIGIN + TOTAL_MASTERY * 2 + 4 * TOTAL_ENHANCEMENT + TOTAL_SOL_JANUS;
 
   useEffect(() => {
     document.title = "Hoop's Erda Fragments Calculator";
@@ -110,32 +125,60 @@ function App() {
             <div className='col'>{getOriginCost(desiredOrigin)}</div>
           </div>
           <div className='row'>
-            <div className='col'>Mastery</div>
+            <div className='col'>Mastery A</div>
             <div className='col'>
               <input
                 tabIndex={1}
-                id='mastery-level'
+                id='mastery-one-level'
                 type='number'
-                value={mastery}
+                value={masteryOne}
                 min={0}
                 max={30}
-                onChange={(e) => setMastery(e.target.value)}></input>
+                onChange={(e) => setMasteryOne(e.target.value)}></input>
             </div>
             <div className='col'>
               <input
                 tabIndex={2}
-                id='desired-mastery-level'
+                id='desired-mastery-one-level'
                 type='number'
-                value={desiredMastery}
+                value={desiredMasteryOne}
                 min={0}
                 max={30}
-                onChange={(e) => setDesiredMastery(e.target.value)}></input>
+                onChange={(e) => setDesiredMasteryOne(e.target.value)}></input>
             </div>
-            <div className='col'>{getMasteryCost(mastery)}</div>
+            <div className='col'>{getMasteryCost(masteryOne)}</div>
             <div className='col'>
-              {getMasteryCost(desiredMastery) - getMasteryCost(mastery)}
+              {getMasteryCost(desiredMasteryOne) - getMasteryCost(masteryOne)}
             </div>
-            <div className='col'>{getMasteryCost(desiredMastery)}</div>
+            <div className='col'>{getMasteryCost(desiredMasteryOne)}</div>
+          </div>
+          <div className='row'>
+            <div className='col'>Mastery B</div>
+            <div className='col'>
+              <input
+                tabIndex={1}
+                id='mastery-two-level'
+                type='number'
+                value={masteryTwo}
+                min={0}
+                max={30}
+                onChange={(e) => setMasteryTwo(e.target.value)}></input>
+            </div>
+            <div className='col'>
+              <input
+                tabIndex={2}
+                id='desired-mastery-two-level'
+                type='number'
+                value={desiredMasteryTwo}
+                min={0}
+                max={30}
+                onChange={(e) => setDesiredMasteryTwo(e.target.value)}></input>
+            </div>
+            <div className='col'>{getMasteryCost(masteryTwo)}</div>
+            <div className='col'>
+              {getMasteryCost(desiredMasteryTwo) - getMasteryCost(masteryTwo)}
+            </div>
+            <div className='col'>{getMasteryCost(desiredMasteryTwo)}</div>
           </div>
           <div className='row'>
             <div className='col'>Boost A</div>
@@ -254,17 +297,49 @@ function App() {
             <div className='col'>{getEnhancementCost(desiredBoostFour)}</div>
           </div>
           <div className='row'>
+            <div className='col'>Sol Janus</div>
+            <div className='col'>
+              <input
+                tabIndex={1}
+                id='sol-janus-level'
+                className='col'
+                type='number'
+                value={solJanus}
+                min={0}
+                max={30}
+                onChange={(e) => setSolJanus(e.target.value)}></input>
+            </div>
+            <div className='col'>
+              <input
+                tabIndex={2}
+                id='desired-sol-janus-level'
+                className='col'
+                type='number'
+                value={desiredSolJanus}
+                min={0}
+                max={30}
+                onChange={(e) => setDesiredSolJanus(e.target.value)}></input>
+            </div>
+            <div className='col'>{getSolJanusCost(solJanus)}</div>
+            <div className='col'>
+              {getSolJanusCost(desiredSolJanus) - getSolJanusCost(solJanus)}
+            </div>
+            <div className='col'>{getSolJanusCost(desiredSolJanus)}</div>
+          </div>
+          <div className='row'>
             <div className='col'></div>
             <div className='col'></div>
             <div className='col'>Total</div>
             <div className='col'>{getFragmentSpent()}</div>
             <div className='col'>
               {getOriginCost(desiredOrigin) +
-                getMasteryCost(desiredMastery) +
+                getMasteryCost(desiredMasteryOne) +
+                getMasteryCost(desiredMasteryTwo) +
                 getEnhancementCost(desiredBoostOne) +
                 getEnhancementCost(desiredBoostTwo) +
                 getEnhancementCost(desiredBoostThree) +
-                getEnhancementCost(desiredBoostFour) -
+                getEnhancementCost(desiredBoostFour) +
+                getSolJanusCost(desiredSolJanus) -
                 getFragmentSpent()}
             </div>
             <div className='col'>{TOTAL_FRAGS}</div>
@@ -283,11 +358,13 @@ function App() {
               {parseFloat(
                 (getFragmentSpent() /
                   (getOriginCost(desiredOrigin) +
-                    getMasteryCost(desiredMastery) +
+                    getMasteryCost(desiredMasteryOne) +
+                    getMasteryCost(desiredMasteryTwo) +
                     getEnhancementCost(desiredBoostOne) +
                     getEnhancementCost(desiredBoostTwo) +
                     getEnhancementCost(desiredBoostThree) +
-                    getEnhancementCost(desiredBoostFour))) *
+                    getEnhancementCost(desiredBoostFour) +
+                    getSolJanusCost(desiredSolJanus))) *
                   100
               ).toFixed(2)}
               %
@@ -300,11 +377,13 @@ function App() {
                 ? "N/A"
                 : parseFloat(
                     (getOriginCost(desiredOrigin) +
-                      getMasteryCost(desiredMastery) +
+                      getMasteryCost(desiredMasteryOne) +
+                      getMasteryCost(desiredMasteryTwo) +
                       getEnhancementCost(desiredBoostOne) +
                       getEnhancementCost(desiredBoostTwo) +
                       getEnhancementCost(desiredBoostThree) +
-                      getEnhancementCost(desiredBoostFour) -
+                      getEnhancementCost(desiredBoostFour) +
+                      getSolJanusCost(desiredSolJanus) -
                       getFragmentSpent()) /
                       income
                   ).toFixed(1)}

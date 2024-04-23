@@ -59,6 +59,7 @@
 section {
   display: table;
   width: 100%;
+  border-spacing: 8px;
 }
 
 section > * {
