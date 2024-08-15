@@ -2,23 +2,125 @@ import "./App.css";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [origin, setOrigin] = useState(1);
-  const [desiredOrigin, setDesiredOrigin] = useState(30);
-  const [masteryOne, setMasteryOne] = useState(0);
-  const [desiredMasteryOne, setDesiredMasteryOne] = useState(30);
-  const [masteryTwo, setMasteryTwo] = useState(0);
-  const [desiredMasteryTwo, setDesiredMasteryTwo] = useState(30);
-  const [enhancementOne, setEnhancementOne] = useState(0);
-  const [desiredBoostOne, setDesiredBoostOne] = useState(30);
-  const [enhancementTwo, setEnhancementTwo] = useState(0);
-  const [desiredBoostTwo, setDesiredBoostTwo] = useState(30);
-  const [enhancementThree, setEnhancementThree] = useState(0);
-  const [desiredBoostThree, setDesiredBoostThree] = useState(30);
-  const [enhancementFour, setEnhancementFour] = useState(0);
-  const [desiredBoostFour, setDesiredBoostFour] = useState(30);
-  const [solJanus, setSolJanus] = useState(0);
-  const [desiredSolJanus, setDesiredSolJanus] = useState(30);
-  const [income, setIncome] = useState(12);
+  const [origin, setOrigin] = useState(() => {
+    return parseInt(localStorage.getItem("origin")) || 1;
+  });
+  const [desiredOrigin, setDesiredOrigin] = useState(() => {
+    return parseInt(localStorage.getItem("desiredOrigin")) || 30;
+  });
+  const [masteryOne, setMasteryOne] = useState(() => {
+    return parseInt(localStorage.getItem("masteryOne")) || 0;
+  });
+  const [desiredMasteryOne, setDesiredMasteryOne] = useState(() => {
+    return parseInt(localStorage.getItem("desiredMasteryOne")) || 30;
+  });
+  const [masteryTwo, setMasteryTwo] = useState(() => {
+    return parseInt(localStorage.getItem("masteryTwo")) || 0;
+  });
+  const [desiredMasteryTwo, setDesiredMasteryTwo] = useState(() => {
+    return parseInt(localStorage.getItem("desiredMasteryTwo")) || 30;
+  });
+  const [enhancementOne, setEnhancementOne] = useState(() => {
+    return parseInt(localStorage.getItem("enhancementOne")) || 0;
+  });
+  const [desiredBoostOne, setDesiredBoostOne] = useState(() => {
+    return parseInt(localStorage.getItem("desiredBoostOne")) || 30;
+  });
+  const [enhancementTwo, setEnhancementTwo] = useState(() => {
+    return parseInt(localStorage.getItem("enhancementTwo")) || 0;
+  });
+  const [desiredBoostTwo, setDesiredBoostTwo] = useState(() => {
+    return parseInt(localStorage.getItem("desiredBoostTwo")) || 30;
+  });
+  const [enhancementThree, setEnhancementThree] = useState(() => {
+    return parseInt(localStorage.getItem("enhancementThree")) || 0;
+  });
+  const [desiredBoostThree, setDesiredBoostThree] = useState(() => {
+    return parseInt(localStorage.getItem("desiredBoostThree")) || 30;
+  });
+  const [enhancementFour, setEnhancementFour] = useState(() => {
+    return parseInt(localStorage.getItem("enhancementFour")) || 0;
+  });
+  const [desiredBoostFour, setDesiredBoostFour] = useState(() => {
+    return parseInt(localStorage.getItem("desiredBoostFour")) || 30;
+  });
+  const [solJanus, setSolJanus] = useState(() => {
+    return parseInt(localStorage.getItem("solJanus")) || 0;
+  });
+  const [desiredSolJanus, setDesiredSolJanus] = useState(() => {
+    return parseInt(localStorage.getItem("desiredSolJanus")) || 30;
+  });
+  const [income, setIncome] = useState(() => {
+    return parseInt(localStorage.getItem("income")) || 12;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("origin", origin);
+  }, [origin]);
+
+  useEffect(() => {
+    localStorage.setItem("desiredOrigin", desiredOrigin);
+  }, [desiredOrigin]);
+
+  useEffect(() => {
+    localStorage.setItem("masteryOne", masteryOne);
+  }, [masteryOne]);
+
+  useEffect(() => {
+    localStorage.setItem("desiredMasteryOne", desiredMasteryOne);
+  }, [desiredMasteryOne]);
+
+  useEffect(() => {
+    localStorage.setItem("masteryTwo", masteryTwo);
+  }, [masteryTwo]);
+
+  useEffect(() => {
+    localStorage.setItem("desiredMasteryTwo", desiredMasteryTwo);
+  }, [desiredMasteryTwo]);
+
+  useEffect(() => {
+    localStorage.setItem("enhancementOne", enhancementOne);
+  }, [enhancementOne]);
+
+  useEffect(() => {
+    localStorage.setItem("desiredBoostOne", desiredBoostOne);
+  }, [desiredBoostOne]);
+
+  useEffect(() => {
+    localStorage.setItem("enhancementTwo", enhancementTwo);
+  }, [enhancementTwo]);
+
+  useEffect(() => {
+    localStorage.setItem("desiredBoostTwo", desiredBoostTwo);
+  }, [desiredBoostTwo]);
+
+  useEffect(() => {
+    localStorage.setItem("enhancementThree", enhancementThree);
+  }, [enhancementThree]);
+
+  useEffect(() => {
+    localStorage.setItem("desiredBoostThree", desiredBoostThree);
+  }, [desiredBoostThree]);
+
+  useEffect(() => {
+    localStorage.setItem("enhancementFour", enhancementFour);
+  }, [enhancementFour]);
+
+  useEffect(() => {
+    localStorage.setItem("desiredBoostFour", desiredBoostFour);
+  }, [desiredBoostFour]);
+
+  useEffect(() => {
+    localStorage.setItem("solJanus", solJanus);
+  }, [solJanus]);
+
+  useEffect(() => {
+    localStorage.setItem("desiredSolJanus", desiredSolJanus);
+  }, [desiredSolJanus]);
+
+  useEffect(() => {
+    localStorage.setItem("income", income);
+  }, [income]);
 
   const getOriginCost = (level) => {
     const costs = [
@@ -65,11 +167,10 @@ function App() {
     );
   };
 
-  const TOTAL_ORIGIN = getOriginCost(30);
-  const TOTAL_MASTERY = getMasteryCost(30);
-  const TOTAL_ENHANCEMENT = getEnhancementCost(30);
-  const TOTAL_SOL_JANUS = getSolJanusCost(30);
-  const TOTAL_FRAGS = TOTAL_ORIGIN + TOTAL_MASTERY * 2 + 4 * TOTAL_ENHANCEMENT + TOTAL_SOL_JANUS;
+  const TOTAL_FRAGS = getOriginCost(desiredOrigin) + getMasteryCost(desiredMasteryOne) + 
+    getMasteryCost(desiredMasteryTwo) + getEnhancementCost(desiredBoostOne) + 
+    getEnhancementCost(desiredBoostTwo) + getEnhancementCost(desiredBoostThree) + 
+    getEnhancementCost(desiredBoostFour) + getSolJanusCost(desiredSolJanus);
 
   useEffect(() => {
     document.title = "Hoop's Erda Fragments Calculator";
