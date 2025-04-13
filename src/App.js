@@ -8,20 +8,35 @@ function App() {
   const [desiredOrigin, setDesiredOrigin] = useState(() => {
     return parseInt(localStorage.getItem("desiredOrigin")) || 30;
   });
-  const [masteryOne, setMasteryOne] = useState(() => {
-    return parseInt(localStorage.getItem("masteryOne")) || 0;
+  const [m1, setM1] = useState(() => {
+    return parseInt(localStorage.getItem("m1")) || 0;
   });
-  const [desiredMasteryOne, setDesiredMasteryOne] = useState(() => {
-    return parseInt(localStorage.getItem("desiredMasteryOne")) || 30;
+  const [dm1, setdM1] = useState(() => {
+    return parseInt(localStorage.getItem("dm1")) || 30;
   });
-  const [masteryTwo, setMasteryTwo] = useState(() => {
-    return parseInt(localStorage.getItem("masteryTwo")) || 0;
+  const [m2, setM2] = useState(() => {
+    return parseInt(localStorage.getItem("m2")) || 0;
   });
-  const [desiredMasteryTwo, setDesiredMasteryTwo] = useState(() => {
-    return parseInt(localStorage.getItem("desiredMasteryTwo")) || 30;
+  const [dm2, setdM2] = useState(() => {
+    return parseInt(localStorage.getItem("dm2")) || 30;
   });
-  const [enhancementOne, setEnhancementOne] = useState(() => {
-    return parseInt(localStorage.getItem("enhancementOne")) || 0;
+
+  const [m3, setM3] = useState(() => {
+    return parseInt(localStorage.getItem("m3")) || 0;
+  });
+  const [dm3, setdM3] = useState(() => {
+    return parseInt(localStorage.getItem("dm3")) || 30;
+  });
+
+  const [m4, setM4] = useState(() => {
+    return parseInt(localStorage.getItem("m4")) || 0;
+  });
+  const [dm4, setdM4] = useState(() => {
+    return parseInt(localStorage.getItem("dm4")) || 30;
+  });
+
+  const [e1, setEnhancementOne] = useState(() => {
+    return parseInt(localStorage.getItem("e1")) || 0;
   });
   const [desiredBoostOne, setDesiredBoostOne] = useState(() => {
     return parseInt(localStorage.getItem("desiredBoostOne")) || 30;
@@ -63,24 +78,40 @@ function App() {
   }, [desiredOrigin]);
 
   useEffect(() => {
-    localStorage.setItem("masteryOne", masteryOne);
-  }, [masteryOne]);
+    localStorage.setItem("m1", m1);
+  }, [m1]);
 
   useEffect(() => {
-    localStorage.setItem("desiredMasteryOne", desiredMasteryOne);
-  }, [desiredMasteryOne]);
+    localStorage.setItem("dm1", dm1);
+  }, [dm1]);
 
   useEffect(() => {
-    localStorage.setItem("masteryTwo", masteryTwo);
-  }, [masteryTwo]);
+    localStorage.setItem("m2", m2);
+  }, [m2]);
 
   useEffect(() => {
-    localStorage.setItem("desiredMasteryTwo", desiredMasteryTwo);
-  }, [desiredMasteryTwo]);
+    localStorage.setItem("dm2", dm2);
+  }, [dm2]);
 
   useEffect(() => {
-    localStorage.setItem("enhancementOne", enhancementOne);
-  }, [enhancementOne]);
+    localStorage.setItem("m3", m3);
+  }, [m3]);
+
+  useEffect(() => {
+    localStorage.setItem("dm3", dm3);
+  }, [dm3]);
+
+  useEffect(() => {
+    localStorage.setItem("m4", m4);
+  }, [m4]);
+
+  useEffect(() => {
+    localStorage.setItem("dm4", dm4);
+  }, [dm4]);
+
+  useEffect(() => {
+    localStorage.setItem("e1", e1);
+  }, [e1]);
 
   useEffect(() => {
     localStorage.setItem("desiredBoostOne", desiredBoostOne);
@@ -149,7 +180,7 @@ function App() {
   const getSolJanusCost = (level) => {
     const costs = [
       125, 38, 44, 50, 57, 63, 69, 75, 82, 300, 110, 124, 138, 152, 165, 179,
-      193, 207, 220, 525, 234, 248, 262, 275, 289, 303, 317, 330, 344, 750
+      193, 207, 220, 525, 234, 248, 262, 275, 289, 303, 317, 330, 344, 750,
     ];
     return costs.slice(0, level).reduce((a, b) => a + b, 0);
   };
@@ -157,9 +188,11 @@ function App() {
   const getFragmentSpent = () => {
     return (
       getOriginCost(origin) +
-      getMasteryCost(masteryOne) +
-      getMasteryCost(masteryTwo) +
-      getEnhancementCost(enhancementOne) +
+      getMasteryCost(m1) +
+      getMasteryCost(m2) +
+      getMasteryCost(m3) +
+      getMasteryCost(m4) +
+      getEnhancementCost(e1) +
       getEnhancementCost(enhancementTwo) +
       getEnhancementCost(enhancementThree) +
       getEnhancementCost(enhancementFour) +
@@ -167,10 +200,15 @@ function App() {
     );
   };
 
-  const TOTAL_FRAGS = getOriginCost(desiredOrigin) + getMasteryCost(desiredMasteryOne) + 
-    getMasteryCost(desiredMasteryTwo) + getEnhancementCost(desiredBoostOne) + 
-    getEnhancementCost(desiredBoostTwo) + getEnhancementCost(desiredBoostThree) + 
-    getEnhancementCost(desiredBoostFour) + getSolJanusCost(desiredSolJanus);
+  const TOTAL_FRAGS =
+    getOriginCost(desiredOrigin) +
+    getMasteryCost(dm1) +
+    getMasteryCost(dm2) +
+    getEnhancementCost(desiredBoostOne) +
+    getEnhancementCost(desiredBoostTwo) +
+    getEnhancementCost(desiredBoostThree) +
+    getEnhancementCost(desiredBoostFour) +
+    getSolJanusCost(desiredSolJanus);
 
   useEffect(() => {
     document.title = "Hoop's Erda Fragments Calculator";
@@ -232,26 +270,26 @@ function App() {
                 tabIndex={1}
                 id='mastery-one-level'
                 type='number'
-                value={masteryOne}
+                value={m1}
                 min={0}
                 max={30}
-                onChange={(e) => setMasteryOne(e.target.value)}></input>
+                onChange={(e) => setM1(e.target.value)}></input>
             </div>
             <div className='col'>
               <input
                 tabIndex={2}
                 id='desired-mastery-one-level'
                 type='number'
-                value={desiredMasteryOne}
+                value={dm1}
                 min={0}
                 max={30}
-                onChange={(e) => setDesiredMasteryOne(e.target.value)}></input>
+                onChange={(e) => setdM1(e.target.value)}></input>
             </div>
-            <div className='col'>{getMasteryCost(masteryOne)}</div>
+            <div className='col'>{getMasteryCost(m1)}</div>
             <div className='col'>
-              {getMasteryCost(desiredMasteryOne) - getMasteryCost(masteryOne)}
+              {getMasteryCost(dm1) - getMasteryCost(m1)}
             </div>
-            <div className='col'>{getMasteryCost(desiredMasteryOne)}</div>
+            <div className='col'>{getMasteryCost(dm1)}</div>
           </div>
           <div className='row'>
             <div className='col'>Mastery B</div>
@@ -260,26 +298,82 @@ function App() {
                 tabIndex={1}
                 id='mastery-two-level'
                 type='number'
-                value={masteryTwo}
+                value={m2}
                 min={0}
                 max={30}
-                onChange={(e) => setMasteryTwo(e.target.value)}></input>
+                onChange={(e) => setM2(e.target.value)}></input>
             </div>
             <div className='col'>
               <input
                 tabIndex={2}
                 id='desired-mastery-two-level'
                 type='number'
-                value={desiredMasteryTwo}
+                value={dm2}
                 min={0}
                 max={30}
-                onChange={(e) => setDesiredMasteryTwo(e.target.value)}></input>
+                onChange={(e) => setdM2(e.target.value)}></input>
             </div>
-            <div className='col'>{getMasteryCost(masteryTwo)}</div>
+            <div className='col'>{getMasteryCost(m2)}</div>
             <div className='col'>
-              {getMasteryCost(desiredMasteryTwo) - getMasteryCost(masteryTwo)}
+              {getMasteryCost(dm2) - getMasteryCost(m2)}
             </div>
-            <div className='col'>{getMasteryCost(desiredMasteryTwo)}</div>
+            <div className='col'>{getMasteryCost(dm2)}</div>
+          </div>
+          <div className='row'>
+            <div className='col'>Mastery C</div>
+            <div className='col'>
+              <input
+                tabIndex={1}
+                id='mastery-three-level'
+                type='number'
+                value={m3}
+                min={0}
+                max={30}
+                onChange={(e) => setM3(e.target.value)}></input>
+            </div>
+            <div className='col'>
+              <input
+                tabIndex={2}
+                id='desired-mastery-three-level'
+                type='number'
+                value={dm3}
+                min={0}
+                max={30}
+                onChange={(e) => setdM3(e.target.value)}></input>
+            </div>
+            <div className='col'>{getMasteryCost(m3)}</div>
+            <div className='col'>
+              {getMasteryCost(dm3) - getMasteryCost(m3)}
+            </div>
+            <div className='col'>{getMasteryCost(dm3)}</div>
+          </div>
+          <div className='row'>
+            <div className='col'>Mastery D</div>
+            <div className='col'>
+              <input
+                tabIndex={1}
+                id='mastery-four-level'
+                type='number'
+                value={m4}
+                min={0}
+                max={30}
+                onChange={(e) => setM4(e.target.value)}></input>
+            </div>
+            <div className='col'>
+              <input
+                tabIndex={2}
+                id='desired-mastery-four-level'
+                type='number'
+                value={dm4}
+                min={0}
+                max={30}
+                onChange={(e) => setdM4(e.target.value)}></input>
+            </div>
+            <div className='col'>{getMasteryCost(m4)}</div>
+            <div className='col'>
+              {getMasteryCost(dm4) - getMasteryCost(m4)}
+            </div>
+            <div className='col'>{getMasteryCost(dm4)}</div>
           </div>
           <div className='row'>
             <div className='col'>Boost A</div>
@@ -288,7 +382,7 @@ function App() {
                 tabIndex={1}
                 id='enhancement-one-level'
                 type='number'
-                value={enhancementOne}
+                value={e1}
                 min={0}
                 max={30}
                 onChange={(e) => setEnhancementOne(e.target.value)}></input>
@@ -303,10 +397,9 @@ function App() {
                 max={30}
                 onChange={(e) => setDesiredBoostOne(e.target.value)}></input>
             </div>
-            <div className='col'>{getEnhancementCost(enhancementOne)}</div>
+            <div className='col'>{getEnhancementCost(e1)}</div>
             <div className='col'>
-              {getEnhancementCost(desiredBoostOne) -
-                getEnhancementCost(enhancementOne)}
+              {getEnhancementCost(desiredBoostOne) - getEnhancementCost(e1)}
             </div>
             <div className='col'>{getEnhancementCost(desiredBoostOne)}</div>
           </div>
@@ -434,8 +527,10 @@ function App() {
             <div className='col'>{getFragmentSpent()}</div>
             <div className='col'>
               {getOriginCost(desiredOrigin) +
-                getMasteryCost(desiredMasteryOne) +
-                getMasteryCost(desiredMasteryTwo) +
+                getMasteryCost(dm1) +
+                getMasteryCost(dm2) +
+                getMasteryCost(dm3) +
+                getMasteryCost(dm4) +
                 getEnhancementCost(desiredBoostOne) +
                 getEnhancementCost(desiredBoostTwo) +
                 getEnhancementCost(desiredBoostThree) +
@@ -459,8 +554,10 @@ function App() {
               {parseFloat(
                 (getFragmentSpent() /
                   (getOriginCost(desiredOrigin) +
-                    getMasteryCost(desiredMasteryOne) +
-                    getMasteryCost(desiredMasteryTwo) +
+                    getMasteryCost(dm1) +
+                    getMasteryCost(dm2) +
+                    getMasteryCost(dm3) +
+                    getMasteryCost(dm4) +
                     getEnhancementCost(desiredBoostOne) +
                     getEnhancementCost(desiredBoostTwo) +
                     getEnhancementCost(desiredBoostThree) +
@@ -478,8 +575,10 @@ function App() {
                 ? "N/A"
                 : parseFloat(
                     (getOriginCost(desiredOrigin) +
-                      getMasteryCost(desiredMasteryOne) +
-                      getMasteryCost(desiredMasteryTwo) +
+                      getMasteryCost(dm1) +
+                      getMasteryCost(dm2) +
+                      getMasteryCost(dm3) +
+                      getMasteryCost(dm4) +
                       getEnhancementCost(desiredBoostOne) +
                       getEnhancementCost(desiredBoostTwo) +
                       getEnhancementCost(desiredBoostThree) +
