@@ -204,6 +204,8 @@ function App() {
     getOriginCost(desiredOrigin) +
     getMasteryCost(dm1) +
     getMasteryCost(dm2) +
+    getMasteryCost(dm3) +
+    getMasteryCost(dm4) +
     getEnhancementCost(desiredBoostOne) +
     getEnhancementCost(desiredBoostTwo) +
     getEnhancementCost(desiredBoostThree) +
